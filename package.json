@@ -1,0 +1,121 @@
+{
+  "name": "antigravity-vscode-standalone",
+  "displayName": "Antigravity Standalone",
+  "description": "方便、独立的 Google Gemini 账号管理器，无需代理即可使用。",
+  "version": "1.2.2",
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/antigravity"
+  },
+  "publisher": "antigravity",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:antigravity-accounts-webview",
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "antigravity-view-container",
+          "title": "Antigravity",
+          "icon": "resources/sidebar.svg"
+        }
+      ]
+    },
+    "views": {
+      "antigravity-view-container": [
+        {
+          "type": "webview",
+          "id": "antigravity-accounts-webview",
+          "name": "账户管理"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "antigravity.refresh",
+        "title": "Refresh Accounts",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "antigravity.switchAccount",
+        "title": "Switch Account"
+      },
+      {
+        "command": "antigravity.addAccount",
+        "title": "添加账号",
+        "icon": "$(add)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "antigravity.refresh",
+          "when": "view == antigravity-accounts-webview",
+          "group": "navigation"
+        },
+        {
+          "command": "antigravity.addAccount",
+          "when": "view == antigravity-accounts-webview",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": []
+    },
+    "configuration": {
+      "title": "Antigravity 配置",
+      "properties": {
+        "antigravity.proxyPort": {
+          "type": "number",
+          "default": 3000,
+          "description": "Port for the local OpenAI-compatible proxy server"
+        },
+        "antigravity.refreshInterval": {
+          "type": "number",
+          "default": 3,
+          "description": "Auto-refresh interval in minutes (0 to disable)"
+        }
+      },
+      "authentication": [
+        {
+          "id": "antigravity",
+          "label": "Antigravity"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "20.x",
+    "@types/express": "^4.17.21",
+    "@types/fs-extra": "^11.0.4",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "express": "^4.18.2",
+    "fs-extra": "^11.2.0",
+    "body-parser": "^1.20.2"
+  }
+}
