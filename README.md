@@ -1,10 +1,6 @@
 # 🌌 Antigravity Standalone
 
 <p align="center">
-  <img src="resources/icon.png" width="128" height="128" alt="Antigravity Icon">
-</p>
-
-<p align="center">
   <strong>一款独立、优雅、强大的 Google Gemini 账号管理扩展。</strong>
 </p>
 
