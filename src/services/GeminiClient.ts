@@ -100,7 +100,7 @@ export class GeminiClient {
                         const frac = v.quotaInfo.remainingFraction ?? 0;
                         const reset = v.quotaInfo.resetTime;
                         modelData[key] = {
-                            percentage: Math.round(frac * 100),
+                            percentage: frac * 100,
                             reset_time: reset
                         };
                     }

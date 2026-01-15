@@ -5,6 +5,10 @@ import { AuthService } from './services/AuthService';
 import { AccountWebviewProvider } from './AccountWebviewProvider';
 import { AntigravityAuthenticationProvider } from './AuthenticationProvider';
 import { StateInjector } from './services/StateInjector';
+import { StatusBarController } from './controller/status_bar_controller';
+import { DashboardController } from './controller/DashboardController';
+import { TriggerService } from './services/TriggerService';
+import { SchedulerService } from './services/SchedulerService';
 
 export async function activate(context: vscode.ExtensionContext) {
 
@@ -12,6 +16,8 @@ export async function activate(context: vscode.ExtensionContext) {
     const dataManager = new DataManager();
     const geminiClient = new GeminiClient();
     const authService = new AuthService(dataManager);
+    const triggerService = new TriggerService(dataManager, geminiClient);
+    const schedulerService = new SchedulerService();
 
     const stateInjector = new StateInjector(context);
 
@@ -25,16 +31,30 @@ export async function activate(context: vscode.ExtensionContext) {
         )
     );
 
-    // 注册 Webview 提供者
-    const webviewProvider = new AccountWebviewProvider(context.extensionUri, dataManager, geminiClient);
+    // 注册 Webview 提供者 (Sidebar)
+    const webviewProvider = new AccountWebviewProvider(
+        context.extensionUri,
+        dataManager,
+        geminiClient,
+        triggerService,
+        schedulerService
+    );
     context.subscriptions.push(
         vscode.window.registerWebviewViewProvider(AccountWebviewProvider.viewType, webviewProvider)
     );
+
+    // 注册 Dashboard 控制器 (Full Panel) - Removing per user request
+    // const dashboardController = new DashboardController(context, dataManager, triggerService, schedulerService);
+    // context.subscriptions.push(vscode.commands.registerCommand('antigravity.openDashboard', () => {
+    //    dashboardController.openDashboard();
+    // }));
 
     // 监听 Webview 数据变更（如账号切换）
     webviewProvider.onDidChangeAccountData(async () => {
         updateStatusBar();
         authProvider.notifySessionChange();
+        // 如果 Dashboard 打开，通知它更新
+        // dashboardController.broadcastRefresh(); // Method is private in current impl, maybe make public or trigger via event
     });
 
     // 处理切换账号命令（深度切换）
@@ -92,52 +112,32 @@ export async function activate(context: vscode.ExtensionContext) {
     }));
 
 
-    // 状态栏
-    const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-    statusBar.command = 'antigravity.toggleWebview';
-    context.subscriptions.push(statusBar);
+    // 状态栏控制器
+    const statusBarController = new StatusBarController(context);
 
     const updateStatusBar = async () => {
         const index = await dataManager.loadAccountIndex();
         if (index.current_account_id) {
             const acc = await dataManager.loadAccount(index.current_account_id);
             if (acc) {
-                const models = acc.quota?.models || {};
-                const getMin = (keyword: string) => {
-                    let min: number | null = null;
-                    for (const k in models) {
-                        if (k.toLowerCase().includes(keyword)) {
-                            const p = models[k].percentage;
-                            if (min === null || p < min) min = p;
-                        }
-                    }
-                    return min;
-                };
-
-                const claude = getMin('claude');
-                const pro = getMin('pro'); // Covers gemini pro
-                const flash = getMin('flash'); // Covers gemini flash
-
-                const parts: string[] = [];
-                const getIcon = (p: number) => p >= 50 ? '🟢' : (p >= 30 ? '🟡' : '🔴');
-
-                if (claude !== null) parts.push(`${getIcon(claude)} Claude: ${claude}%`);
-                if (pro !== null) parts.push(`${getIcon(pro)} G Pro: ${pro}%`);
-                if (flash !== null) parts.push(`${getIcon(flash)} G Flash: ${flash}%`);
-
-                if (parts.length > 0) {
-                    statusBar.text = parts.join('   ');
-                } else {
-                    statusBar.text = `$(rocket) ${acc.email} (${acc.quota?.remaining_quota ?? '?'}%)`;
-                }
-
-                statusBar.show();
+                // 适配数据结构
+                const models = acc.quota?.models;
+                statusBarController.update(models as any, acc.email);
                 return;
             }
         }
-        statusBar.text = `$(rocket) Antigravity`;
-        statusBar.show();
+        // No account or load failed
+        statusBarController.update(undefined);
     };
+
+    // 监听配置变化，实时更新状态栏
+    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => {
+        if (e.affectsConfiguration('antigravity.statusBarFormat') ||
+            e.affectsConfiguration('antigravity.warningThreshold') ||
+            e.affectsConfiguration('antigravity.criticalThreshold')) {
+            updateStatusBar();
+        }
+    }));
 
     // 命令注册
     context.subscriptions.push(vscode.commands.registerCommand('antigravity.refresh', async () => {

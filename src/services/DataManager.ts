@@ -59,6 +59,10 @@ export class DataManager {
         await fs.ensureDir(this.accountsDir);
     }
 
+    public getDataDir(): string {
+        return this.dataDir;
+    }
+
     async loadAccountIndex(): Promise<AccountIndex> {
         try {
             await this.ensureDirectories();

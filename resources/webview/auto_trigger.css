@@ -1,0 +1,1709 @@
+/**
+ * Antigravity Cockpit - Auto Trigger Tab CSS
+ * 自动触发功能的样式
+ */
+
+/* ========================================
+   Tab Navigation
+   ======================================== */
+
+.tab-nav {
+    display: flex;
+    gap: 4px;
+    padding: 8px 16px;
+    background: var(--vscode-editor-background);
+    border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.tab-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: var(--vscode-foreground);
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+.tab-btn:hover {
+    opacity: 1;
+    background: var(--vscode-list-hoverBackground);
+}
+
+.tab-btn.active {
+    opacity: 1;
+    background: var(--vscode-list-activeSelectionBackground);
+    color: var(--vscode-list-activeSelectionForeground);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 6px;
+    background-color: #4CAF50;
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.4);
+}
+
+.status-dot.hidden {
+    display: none;
+}
+
+/* ========================================
+   Description Card
+   ======================================== */
+
+.at-description-card {
+    background: var(--vscode-textBlockQuote-background);
+    border-left: 4px solid var(--vscode-button-background);
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.at-desc-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.at-desc-content {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--vscode-foreground);
+    white-space: pre-wrap;
+}
+
+/* ========================================
+   Compact Layout
+   ======================================== */
+
+.auto-trigger-compact {
+    padding: 20px;
+    width: 100%;
+}
+
+/* Status Card */
+.at-status-card {
+    background: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Auth Row */
+.at-row {
+    padding: 16px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.at-auth-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.at-auth-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.at-auth-info-clickable {
+    cursor: pointer;
+}
+
+.at-auth-info-clickable:hover {
+    color: var(--vscode-foreground);
+}
+
+.at-auth-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.at-auth-text {
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.at-auth-email {
+    color: var(--vscode-descriptionForeground);
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.8;
+}
+
+.at-auth-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.account-count-badge {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: rgba(0, 122, 204, 0.18);
+    color: var(--vscode-textLink-foreground);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+
+/* 下拉箭头按钮 */
+.quota-account-dropdown-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--vscode-descriptionForeground);
+    font-size: 10px;
+    cursor: pointer;
+    padding: 2px 6px;
+    margin-left: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+
+.quota-account-dropdown-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--vscode-foreground);
+    border-color: var(--vscode-panel-border);
+}
+
+/* Status Grid */
+.at-status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.at-status-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.at-label {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.at-value {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: pre-line;
+}
+
+/* Action Buttons */
+.at-actions {
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+    justify-content: center;
+}
+
+/* Buttons */
+.at-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.at-btn-primary {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+}
+
+.at-btn-primary:hover {
+    background: var(--vscode-button-hoverBackground);
+}
+
+.at-btn-secondary {
+    background: transparent;
+    border: 1px solid var(--vscode-button-background);
+    color: var(--vscode-button-background);
+}
+
+.at-btn-secondary:hover {
+    background: rgba(0, 122, 204, 0.1);
+}
+
+.at-btn-accent {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+}
+
+.at-btn-accent:hover {
+    background: linear-gradient(135deg, #45a049, #3d8b40);
+}
+
+.at-btn-danger {
+    background: transparent;
+    border: 1px solid #f44336;
+    color: #f44336;
+}
+
+.at-btn-danger:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.at-btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Config Modal Styles */
+.at-config-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.at-config-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.at-config-section {
+    margin: 16px 0;
+}
+
+.at-config-section>label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* Select */
+.at-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-foreground);
+    font-size: 14px;
+}
+
+/* Mode Config */
+.at-mode-config {
+    margin: 12px 0;
+    padding: 12px;
+    background: var(--vscode-textBlockQuote-background);
+    border-radius: 6px;
+}
+
+.at-mode-config.hidden {
+    display: none;
+}
+
+.at-mode-config>label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--vscode-descriptionForeground);
+}
+
+/* Chip Grid */
+.at-time-grid,
+.at-day-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.at-custom-time-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.at-custom-time-label {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.at-input-time-compact {
+    min-width: 110px;
+}
+
+.at-chip {
+    padding: 6px 12px;
+    background: var(--vscode-input-background);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.at-chip:hover {
+    border-color: var(--vscode-button-background);
+}
+
+.at-chip.selected {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border-color: var(--vscode-button-background);
+}
+
+/* Quick Buttons */
+.at-quick-btns {
+    display: flex;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.at-quick-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--vscode-foreground);
+    cursor: pointer;
+}
+
+.at-quick-btn:hover {
+    background: var(--vscode-list-hoverBackground);
+}
+
+/* Interval Config */
+.at-interval-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+}
+
+.at-input-small {
+    width: 60px;
+    padding: 6px 8px;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-foreground);
+    text-align: center;
+}
+
+.at-input-time {
+    padding: 6px 8px;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-foreground);
+}
+
+/* Model List */
+.at-model-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 8px;
+    background: var(--vscode-input-background);
+    border-radius: 4px;
+}
+
+.at-model-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.at-model-item:hover {
+    border-color: var(--vscode-button-background);
+}
+
+.at-model-item.selected {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border-color: var(--vscode-button-background);
+}
+
+.at-model-item input[type="checkbox"] {
+    margin: 0;
+}
+
+/* Hint */
+.at-hint {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin: 4px 0 8px 0;
+    white-space: pre-line;
+}
+
+/* Advanced Section */
+.at-advanced {
+    margin: 12px 0;
+    padding: 8px;
+    background: var(--vscode-textBlockQuote-background);
+    border-radius: 4px;
+}
+
+.at-advanced summary {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.at-crontab-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.at-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-foreground);
+}
+
+.at-crontab-result {
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+/* Custom Prompt Section */
+.at-custom-prompt-section {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--vscode-panel-border);
+}
+
+.at-custom-prompt-section>label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--vscode-foreground);
+}
+
+.at-custom-prompt-section .at-input {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+/* Hint below toggle */
+.at-hint-toggle {
+    margin: -8px 0 12px 0;
+    padding-left: 0;
+}
+
+/* Trigger Mode Selection */
+.at-trigger-mode-section {
+    margin: 16px 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.at-trigger-mode-section>label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--vscode-foreground);
+}
+
+.at-trigger-mode-section.at-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.at-segmented {
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    background: var(--vscode-input-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 8px;
+}
+
+.at-segment-btn {
+    flex: 1;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--vscode-foreground);
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.at-segment-btn:hover {
+    background: var(--vscode-list-hoverBackground);
+}
+
+.at-segment-btn.selected {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border-color: var(--vscode-button-background);
+}
+
+.at-segment-btn:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: 2px;
+}
+
+/* Custom Prompt in outer section */
+.at-custom-prompt-outer {
+    margin-top: 8px;
+}
+
+.at-custom-prompt-outer>label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--vscode-foreground);
+}
+
+.at-custom-prompt-outer .at-input {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+/* Custom Prompt in Test Modal */
+.at-test-prompt-section {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--vscode-panel-border);
+}
+
+.at-test-prompt-section>label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.at-test-prompt-section .at-input {
+    width: 100%;
+    font-size: 12px;
+}
+
+/* Preview */
+.at-preview {
+    margin: 12px 0;
+}
+
+.at-preview>label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.at-preview-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.at-preview-list li {
+    margin: 4px 0;
+}
+
+/* History */
+.at-history-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.at-history-item {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+    background: var(--vscode-list-hoverBackground);
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.at-history-item:last-child {
+    margin-bottom: 0;
+}
+
+.at-history-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.at-history-icon {
+    font-size: 16px;
+}
+
+.at-history-time {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--vscode-foreground);
+}
+
+.at-history-body {
+    margin-top: 8px;
+    padding-left: 24px;
+}
+
+.at-history-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.at-history-row:last-child {
+    margin-bottom: 0;
+}
+
+.at-history-label {
+    color: var(--vscode-descriptionForeground);
+    min-width: 50px;
+    flex-shrink: 0;
+}
+
+.at-history-value {
+    color: var(--vscode-foreground);
+    word-break: break-all;
+}
+
+.at-history-message {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-top: 4px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.at-history-prompt {
+    font-size: 12px;
+    color: var(--vscode-textLink-foreground);
+    margin-top: 4px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.at-history-response {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-top: 2px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* 模型名称高亮样式 */
+.at-model-name {
+    display: inline-block;
+    font-weight: 600;
+    color: #4dabf7;
+    background: rgba(77, 171, 247, 0.15);
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 2px;
+}
+
+.at-history-duration {
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    margin-left: auto;
+}
+
+.at-history-type-badge {
+    font-size: 10px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    margin-left: 8px;
+    font-weight: 500;
+}
+
+.at-history-account {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    margin-left: 6px;
+    background: rgba(0, 122, 204, 0.18);
+    color: var(--vscode-textLink-foreground);
+    font-weight: 600;
+    display: inline-block;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.at-history-type-manual {
+    background: rgba(33, 150, 243, 0.15);
+    color: #4dabf7;
+    border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.at-history-type-auto {
+    background: rgba(156, 39, 176, 0.15);
+    color: #da77f2;
+    border: 1px solid rgba(156, 39, 176, 0.2);
+}
+
+.at-no-data {
+    text-align: center;
+    padding: 20px;
+    color: var(--vscode-descriptionForeground);
+    font-style: italic;
+}
+
+.at-loading {
+    text-align: center;
+    padding: 12px;
+    color: var(--vscode-descriptionForeground);
+}
+
+/* Modal Size Variants */
+.modal-content-small {
+    max-width: 400px;
+}
+
+.modal-content-medium {
+    max-width: 550px;
+}
+
+/* Ensure revoke modal appears above account manage modal */
+#at-revoke-modal {
+    z-index: 3000;
+}
+
+/* ========================================
+   Auto Trigger Panel (Legacy - can be removed later)
+   ======================================== */
+
+/* ========================================
+   Authorization Section
+   ======================================== */
+
+.auth-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.auth-status.unauthorized {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.auth-status.authorized {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.auth-status .status-icon {
+    font-size: 24px;
+}
+
+.auth-status .status-info {
+    flex: 1;
+}
+
+.auth-status .status-info .title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.auth-status .status-info .email {
+    font-size: 13px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.auth-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.auth-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.auth-btn.primary {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+}
+
+.auth-btn.primary:hover {
+    background: var(--vscode-button-hoverBackground);
+}
+
+.auth-btn.secondary {
+    background: transparent;
+    border: 1px solid var(--vscode-button-background);
+    color: var(--vscode-button-background);
+}
+
+.auth-btn.secondary:hover {
+    background: rgba(var(--vscode-button-background), 0.1);
+}
+
+.auth-btn.danger {
+    background: transparent;
+    border: 1px solid #f44336;
+    color: #f44336;
+}
+
+.auth-btn.danger:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.auth-hint {
+    font-size: 13px;
+    color: var(--vscode-descriptionForeground);
+    line-height: 1.5;
+    padding: 12px;
+    background: var(--vscode-textBlockQuote-background);
+    border-radius: 6px;
+    border-left: 3px solid var(--vscode-textBlockQuote-border);
+}
+
+/* ========================================
+   Multi-Account Authorization
+   ======================================== */
+
+.at-auth-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.at-auth-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--vscode-foreground);
+}
+
+.at-account-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.at-account-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--vscode-input-background);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.at-account-item:hover {
+    border-color: var(--vscode-button-background);
+}
+
+.at-account-item.active {
+    border-color: var(--vscode-charts-green);
+    background: rgba(76, 175, 80, 0.08);
+}
+
+.at-account-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.at-account-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.at-account-email {
+    font-size: 13px;
+    color: var(--vscode-foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.at-account-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: rgba(76, 175, 80, 0.2);
+    color: var(--vscode-charts-green);
+    border-radius: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.at-account-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+
+/* ========================================
+   Schedule Section
+   ======================================== */
+
+.schedule-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.schedule-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--vscode-panel-border);
+    margin-bottom: 16px;
+}
+
+.schedule-toggle label {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    width: 48px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--vscode-input-background);
+    border: 1px solid var(--vscode-input-border);
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--vscode-foreground);
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked+.toggle-slider {
+    background-color: var(--vscode-button-background);
+    border-color: var(--vscode-button-background);
+}
+
+.toggle-switch input:checked+.toggle-slider:before {
+    transform: translateX(24px);
+    background-color: var(--vscode-button-foreground);
+}
+
+/* Repeat Mode */
+.repeat-mode {
+    margin-bottom: 20px;
+}
+
+.repeat-mode label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--vscode-input-border);
+    background: var(--vscode-input-background);
+    color: var(--vscode-foreground);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.mode-btn:hover {
+    border-color: var(--vscode-button-background);
+}
+
+.mode-btn.active {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border-color: var(--vscode-button-background);
+}
+
+.mode-btn .mode-icon {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.mode-btn .mode-label {
+    font-size: 13px;
+}
+
+/* Time Selection */
+.time-config {
+    display: none;
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--vscode-textBlockQuote-background);
+    border-radius: 6px;
+}
+
+.time-config.active {
+    display: block;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.time-chip {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.time-chip:hover {
+    border-color: var(--vscode-button-background);
+}
+
+.time-chip.selected {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border-color: var(--vscode-button-background);
+}
+
+.time-chip.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Day Selection */
+.day-grid {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.day-chip {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.day-chip:hover {
+    border-color: var(--vscode-button-background);
+}
+
+.day-chip.selected {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border-color: var(--vscode-button-background);
+}
+
+.quick-select {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.quick-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--vscode-input-border);
+    background: transparent;
+    color: var(--vscode-foreground);
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.quick-btn:hover {
+    background: var(--vscode-list-hoverBackground);
+}
+
+/* Interval Config */
+.interval-config {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.interval-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.interval-group label {
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.interval-group input,
+.interval-group select {
+    padding: 8px 12px;
+    border: 1px solid var(--vscode-input-border);
+    background: var(--vscode-input-background);
+    color: var(--vscode-foreground);
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.interval-group input[type="number"] {
+    width: 60px;
+}
+
+.interval-group input[type="time"] {
+    width: 100px;
+}
+
+/* Advanced Crontab */
+.crontab-section {
+    margin-top: 20px;
+    border-top: 1px solid var(--vscode-panel-border);
+    padding-top: 16px;
+}
+
+.crontab-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--vscode-descriptionForeground);
+    font-size: 13px;
+}
+
+.crontab-toggle:hover {
+    color: var(--vscode-foreground);
+}
+
+.crontab-content {
+    display: none;
+    margin-top: 12px;
+}
+
+.crontab-content.expanded {
+    display: block;
+}
+
+.crontab-input-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.crontab-input-group input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--vscode-input-border);
+    background: var(--vscode-input-background);
+    color: var(--vscode-foreground);
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.crontab-result {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.crontab-result.valid {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+}
+
+.crontab-result.invalid {
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+}
+
+/* Schedule Preview */
+.schedule-preview {
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--vscode-textBlockQuote-background);
+    border-radius: 6px;
+    border-left: 3px solid var(--vscode-button-background);
+}
+
+.schedule-preview h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.next-runs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.next-runs li {
+    padding: 6px 0;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.next-runs li .time {
+    color: var(--vscode-foreground);
+    font-weight: 500;
+}
+
+/* Save Button */
+.schedule-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--vscode-panel-border);
+}
+
+.save-schedule-btn {
+    padding: 12px 24px;
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.save-schedule-btn:hover {
+    background: var(--vscode-button-hoverBackground);
+}
+
+.test-trigger-btn {
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid var(--vscode-button-background);
+    color: var(--vscode-button-background);
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.test-trigger-btn:hover {
+    background: rgba(var(--vscode-button-background), 0.1);
+}
+
+/* ========================================
+   Model Selection
+   ======================================== */
+
+.model-selection {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--vscode-textBlockQuote-background);
+    border-radius: 6px;
+}
+
+.model-selection h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.model-chip {
+    padding: 8px 12px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.model-chip:hover {
+    border-color: var(--vscode-button-background);
+}
+
+.model-chip.selected {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border-color: var(--vscode-button-background);
+}
+
+.no-models {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 12px;
+    color: var(--vscode-descriptionForeground);
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* ========================================
+   Trigger History
+   ======================================== */
+
+.trigger-history {
+    margin-top: 20px;
+}
+
+.trigger-history h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.history-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item .status-icon {
+    font-size: 16px;
+}
+
+.history-item.success .status-icon {
+    color: #4caf50;
+}
+
+.history-item.failed .status-icon {
+    color: #f44336;
+}
+
+.history-item .history-info {
+    flex: 1;
+}
+
+.history-item .history-time {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.history-item .history-message {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.history-item .history-duration {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.no-history {
+    text-align: center;
+    padding: 20px;
+    color: var(--vscode-descriptionForeground);
+    font-size: 13px;
+}
+
+/* ========================================
+   Spinner & Testing Status
+   ======================================== */
+
+.at-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--vscode-foreground);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: at-spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+@keyframes at-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.at-testing-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, var(--vscode-charts-blue) 0%, var(--vscode-charts-purple) 100%);
+    color: white;
+    font-weight: 500;
+    font-size: 13px;
+    animation: at-pulse 1.5s ease-in-out infinite;
+}
+
+.at-testing-banner.hidden {
+    display: none;
+}
+
+@keyframes at-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.at-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Crontab 互斥时的禁用样式 */
+.at-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.at-disabled * {
+    pointer-events: none;
+}
+
+select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============ Modal Styles (Appended) ============ */
+
+.modal {
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* We don't use display:none so we can animate opacity, but visibility:hidden removes it from access */
+}
+
+.modal-content {
+    background-color: var(--vscode-editor-background);
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    animation: modalSlideIn 0.2s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.close-btn {
+    color: var(--vscode-descriptionForeground);
+    font-size: 24px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.close-btn:hover {
+    color: var(--vscode-foreground);
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--vscode-panel-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
