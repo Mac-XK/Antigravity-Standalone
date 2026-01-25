@@ -620,7 +620,7 @@ export class AccountWebviewProvider implements vscode.WebviewViewProvider {
                         const avatar = acc.picture ? \`<img src="\${acc.picture}" class="acc-avatar">\` : \`<div class="acc-avatar">\${initial}</div>\`;
                         
                         // Parse models for summary
-                        const modelsHtml = renderModelSummary(acc.quota?.models);
+                        const modelsHtml = renderModelSummary(acc.quota?.models, isActive);
 
                         el.innerHTML = \`
                             <div class="acc-header">
@@ -642,7 +642,7 @@ export class AccountWebviewProvider implements vscode.WebviewViewProvider {
                     });
                 }
 
-                function renderModelSummary(models) {
+                function renderModelSummary(models, isActive) {
                     if (!models) return '';
 
                     const formatName = (key) => {
@@ -661,7 +661,7 @@ export class AccountWebviewProvider implements vscode.WebviewViewProvider {
                     const mkItem = (name, val, resetTimeStr) => {
                          const displayVal = parseFloat(val).toFixed(2);
                          let timeInfo = '';
-                         if (resetTimeStr) {
+                         if (resetTimeStr && isActive) {
                             try {
                                 const resetDate = new Date(resetTimeStr);
                                 const now = new Date();
